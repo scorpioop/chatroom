@@ -34,6 +34,7 @@ function initIO (dispatch,userId) {
     //连接服务器,得到代表连接的socket对象
     io.socket = io('ws://localhost:3900')
     //绑定'receiveMessage'的监听,来接收服务器发送的消息
+    io.socket.emit('userId',userId)
     io.socket.on('receiveMsg', function (chatMsg) {
       console.log('浏览器端接收到消息:', chatMsg)
       // 只有当chatMsg是当前用户相关的消息，才去分发同步action保存消息
@@ -41,6 +42,7 @@ function initIO (dispatch,userId) {
         dispatch(receiveMsgOne({chatMsg,userId}))
       }
     })
+    
   }
 }
 
@@ -159,7 +161,6 @@ export const updateUser = user => {
 
 // 获取用户的action
 export const getUser = () => {
-  console.log('kkkkkkkkddd');
   return async dispatch => {
     const response = await reqUser()
     const res = response.data

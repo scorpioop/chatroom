@@ -36,6 +36,7 @@ const userSchema = mongoose.Schema({
   money: { type: String }, //薪资
   detail: { type: String }, //个人简介
   waimao: { type: String }, //外貌
+  socketId: {type:String} //暂存的socketId
 })
 
 // 定义Model,与集合对应，可以操作集合
@@ -59,3 +60,5 @@ const ChatModel=mongoose.model('chat',chatSchema)
 
 exports.UserModel=UserModel   //分别暴露
 exports.ChatModel=ChatModel   //分别暴露
+
+
