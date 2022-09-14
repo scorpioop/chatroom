@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import PropType from 'prop-types'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
 import QueueAnim from 'rc-queue-anim'
+import "./style.css"
+
 import { withRouter } from 'react-router-dom'
 const Header = Card.Header
 const Body = Card.Body
@@ -34,7 +36,12 @@ class UserList extends React.Component {
                 >
                   <Header
                     thumb={
-                      require(`../../assets/images/${user.header}.png`).default
+                      // require(`../../assets/images/${user.header}.png`).default
+                      
+                        <div>
+                          <img className={!user.onLine?"HeadPortraits":null} src={require(`../../assets/images/${user.header}.png`).default} />
+                        </div>
+                      
                     }
                     extra={user.username}
                   />

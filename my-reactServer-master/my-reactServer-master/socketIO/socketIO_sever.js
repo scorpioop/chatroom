@@ -16,7 +16,9 @@ module.exports = function (server) {
     socket.on("userId", function (userId) {
       UserModel.findByIdAndUpdate(
         userId,
-        { socketId: socket.id },
+        { socketId: socket.id,
+          onLine: true
+         },
         function (err, res) {
           if (err) {
             console.log("更新失败");
@@ -59,6 +61,24 @@ module.exports = function (server) {
       });
       // 处理数据（保存消息）
       // 准别chatMas对象的相关数据
+    });
+    //断联
+    socket.on("disconnect", (reason) => {
+      console.log("disconnect reason ", reason, socket.id);
+      //userMap.delete(socket.handshake.query.username)
+      UserModel.findOneAndUpdate(
+        {socketId:socket.id},
+        { 
+          onLine: false
+         },
+        function (err, res) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("更新成功");
+          }
+        }
+      );
     });
   });
 };

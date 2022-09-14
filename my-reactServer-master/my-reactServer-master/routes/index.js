@@ -26,7 +26,7 @@ router.post('/api/register', function (req, res) {
     if (user) {
       res.send({ code: 1, msg: '此用户已经存在' })
     } else {
-      new UserModel({ username, type, password: MD5(password) }).save(function (
+      new UserModel({ username, type, password: MD5(password),onLine:true }).save(function (
         err,
         user
       ) {

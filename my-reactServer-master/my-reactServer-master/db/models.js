@@ -36,7 +36,8 @@ const userSchema = mongoose.Schema({
   money: { type: String }, //薪资
   detail: { type: String }, //个人简介
   waimao: { type: String }, //外貌
-  socketId: {type:String} //暂存的socketId
+  socketId: {type:String}, //暂存的socketId
+  onLine:{type:Boolean} //是否上线
 })
 
 // 定义Model,与集合对应，可以操作集合
